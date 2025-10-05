@@ -8,7 +8,7 @@ export default class FileService {
                 typeof data === "string" ? data : JSON.stringify(data, null, 2);
 
             fs.writeFileSync(caminho, conteudo, { encoding: "utf-8" });
-            console.log(`✅ Arquivo salvo em ${caminho}`);
+            console.log(`Arquivo salvo em ${caminho}`);
         } catch (error) {
             console.error("Erro ao salvar arquivo:", error);
         }
