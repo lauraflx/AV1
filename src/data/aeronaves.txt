@@ -1,0 +1,17 @@
+[
+  {
+    "codigo": 1,
+    "modelo": "Boeing 737",
+    "tipo": "Comercial",
+    "capacidade": 180,
+    "alcance": 5000
+  },
+  {
+    "codigo": 2,
+    "modelo": "Airbus A320",
+    "tipo": "Comercial",
+    "capacidade": 160,
+    "alcance": 4500
+  }
+]
+

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nome": "Maria Fernanda",
+    "telefone": "12988887777",
+    "endereco": "Rua do Porto, 123",
+    "usuario": "maria",
+    "senha": "1234",
+    "nivelPermissao": "ADMINISTRADOR"
+  },
+  {
+    "id": 2,
+    "nome": "Heloísa",
+    "telefone": "12999998888",
+    "endereco": "Jardim Arco-íris, 45",
+    "usuario": "heloísa",
+    "senha": "abcd",
+    "nivelPermissao": "GERENTE"
+  },
+  {
+    "id": 3,
+    "nome": "Gerson",
+    "telefone": "12999998888",
+    "endereco": "Morada do Sol, 5",
+    "usuario": "gerson",
+    "senha": "paysandu",
+    "nivelPermissao": "ADMINISTRADOR"
+  }
+]

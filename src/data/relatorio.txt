@@ -1,0 +1,16 @@
+
+===== RELATÓRIO FINAL DA AERONAVE =====
+Cliente: 
+Data de entrega: Sat Oct 04 2025
+
+Código: 1
+Modelo: Boeing 737
+Tipo: Comercial
+Capacidade: 180
+Alcance: 5000
+
+Peças: 0
+Etapas: 0
+Testes: 0
+=======================================
+        

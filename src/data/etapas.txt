@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nome": "Verificação dos controles do painel",
+    "descricao": "Conjunto inicial da estrutura dos controles aeronave.",
+    "responsavel": "Masanori"
+  },
+  {
+    "id": 2,
+    "nome": "Implementação da cabine de vidro",
+    "descricao": "Exibição das informações cruciais do voo.",
+    "responsavel": "Gerson"
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "codigo": 101,
+    "nome": "Motor",
+    "fabricante": "Royal A",
+    "quantidade": 4
+  },
+  {
+    "codigo": 102,
+    "nome": "Asa Direita",
+    "fabricante": "Airbus",
+    "quantidade": 2
+  }
+]
+
