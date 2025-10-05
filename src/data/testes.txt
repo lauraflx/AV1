@@ -2,14 +2,15 @@
   {
     "id": 1,
     "descricao": "Teste de integridade estrutural",
+    "responsavel": "Maria Fernanda",
     "resultado": "Aprovado",
-    "data": "2025-09-30"
+    "data": "30-09-2025"
   },
   {
     "id": 2,
     "descricao": "Teste de controle eletrônico",
+    "responsavel": "Gerson",
     "resultado": "Em andamento",
-    "data": "2025-10-01"
+    "data": "10-01-2025"
   }
 ]
-

@@ -15,9 +15,9 @@ let aeronaves: Aeronave[] = []
 let funcionarios: Funcionario[] = []
 let etapas: { id: number; nome: string; descricao: string; responsavel: string }[] = []
 let pecas: { codigo: number; nome: string; fabricante: string; quantidade: number }[] = []
+let testes: { id: number; nome: string; responsavel: string; resultado: string }[] = []
 let usuarioLogado: Funcionario | null = null
 
-// ==== Carregar Dados ====
 function carregarDados() {
     // aeronaves
     try {
@@ -62,9 +62,21 @@ function carregarDados() {
             pecas = dadosPecas
         }
     } catch { pecas = [] }
+
+    // testes
+    try {
+        const dadosTestes = FileService.carregar("./src/data/testes.txt")
+        if (dadosTestes && Array.isArray(dadosTestes)) {
+            testes = dadosTestes.map((t: any) => ({
+                id: t.id,
+                nome: t.descricao,
+                responsavel: t.responsavel,
+                resultado: t.resultado
+            }))
+        }
+    } catch { testes = [] }
 }
 
-// ==== Login ====
 function login() {
     console.log("\n=== LOGIN ===")
     const usuario = readlineSync.question("Usuario: ").trim()
@@ -83,7 +95,6 @@ function login() {
     }
 }
 
-// ==== Menu Login ====
 function menuLogin() {
     while (!usuarioLogado) {
         console.log("\n=== SISTEMA AEROCODE ===")
@@ -102,7 +113,6 @@ function menuLogin() {
     }
 }
 
-// ==== Menu Principal ====
 function menuPrincipal() {
     while (true) {
         console.log("\n=== SISTEMA AEROCODE ===")
@@ -115,6 +125,8 @@ function menuPrincipal() {
         console.log("7 - Listar Etapas")
         console.log("8 - Cadastrar Peça")
         console.log("9 - Listar Peças")
+        console.log("10 - Cadastrar Teste")
+        console.log("11 - Listar Testes")
         console.log("0 - Sair")
 
         const opcao = readlineSync.question("Escolha uma opcao: ")
@@ -129,13 +141,14 @@ function menuPrincipal() {
             case "7": listarEtapas(); break
             case "8": cadastrarPeca(); break
             case "9": listarPecas(); break
+            case "10": cadastrarTeste(); break
+            case "11": listarTestes(); break
             case "0": usuarioLogado = null; menuLogin(); return
             default: console.log("Opcao invalida!")
         }
     }
 }
 
-// ==== Aeronaves ====
 function cadastrarAeronave() {
     console.log("\n=== Cadastro de Aeronave ===")
     const codigo = readlineSync.question("Codigo: ")
@@ -158,11 +171,10 @@ function listarAeronaves() {
     aeronaves.forEach(a => a.exibirDetalhes())
 }
 
-// ==== Funcionários ====
 function cadastrarFuncionario(logado: boolean = false) {
     console.log("\n=== Cadastro de Funcionário ===")
     const id = (funcionarios.length + 1).toString()
-    const nome = readlineSync.question("Nome: ").trim()
+    const nome = readlineSync.question("Nome: ").trim() // trim remove espaços em branco
     const telefone = readlineSync.question("Telefone: ").trim()
     const endereco = readlineSync.question("Endereco: ").trim()
     const usuario = readlineSync.question("Usuario: ").trim()
@@ -190,7 +202,6 @@ function listarFuncionarios() {
     funcionarios.forEach(f => console.log(`${f.id} - ${f.nome} (${f.nivelPermissao})`))
 }
 
-// ==== Relatório ====
 function gerarRelatorio() {
     console.log("\n=== Gerar Relatório ===")
     if (aeronaves.length === 0) { console.log("Nenhuma aeronave cadastrada!"); return }
@@ -207,7 +218,6 @@ function gerarRelatorio() {
     console.log("Relatório gerado com sucesso em /src/data/relatorio.txt")
 }
 
-// ==== Etapas ====
 function cadastrarEtapa() {
     console.log("\n=== Cadastro de Etapa ===")
     const id = etapas.length + 1
@@ -231,11 +241,10 @@ function listarEtapas() {
     })
 }
 
-// ==== Peças ====
 function cadastrarPeca() {
     console.log("\n=== Cadastro de Peça ===")
     const codigo = readlineSync.questionInt("Codigo da peca: ")
-    const nome = readlineSync.question("Nome da peca: ").trim() // trim remove espaços em branco
+    const nome = readlineSync.question("Nome da peca: ").trim()
     const fabricante = readlineSync.question("Fabricante: ").trim()
     const quantidade = readlineSync.questionInt("Quantidade: ")
 
@@ -253,6 +262,28 @@ function listarPecas() {
     })
 }
 
-// ==== Inicializa ====
+function cadastrarTeste() {
+    console.log("\n=== Cadastro de Teste ===")
+    const id = testes.length + 1
+    const nome = readlineSync.question("Nome do teste: ").trim()
+    const responsavel = readlineSync.question("Responsável: ").trim()
+    const resultado = readlineSync.question("Resultado (Aprovado/Reprovado/Em andamento): ").trim()
+
+    if (!nome) return
+    const teste = { id, nome, responsavel, resultado }
+    testes.push(teste)
+    FileService.salvar("./src/data/testes.txt", JSON.stringify(testes, null, 2))
+    console.log("Teste cadastrado com sucesso!")
+}
+
+function listarTestes() {
+    console.log("\n=== Testes Cadastrados ===")
+    if (testes.length === 0) { console.log("Nenhum teste cadastrado!"); return }
+    testes.forEach((t, i) => {
+        console.log(`${i + 1} - ${t.nome} (Responsável: ${t.responsavel})`)
+        console.log(`    Resultado: ${t.resultado}`)
+    })
+}
+
 carregarDados()
 menuLogin()
